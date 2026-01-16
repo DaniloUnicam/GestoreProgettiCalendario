@@ -60,6 +60,11 @@ public class DefaultActivity implements IActivity {
     }
 
     @Override
+    public int getEstimatedDuration() {
+        return this.estimatedDuration;
+    }
+
+    @Override
     public boolean isCompleted() {
         return this.isCompleted;
     }

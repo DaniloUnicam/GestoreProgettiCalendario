@@ -9,8 +9,6 @@ public class HandlerProject {
         this.project = project;
     }
 
-
-
     public IProject getProject() {
         return project;
     }

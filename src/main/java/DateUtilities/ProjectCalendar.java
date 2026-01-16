@@ -52,6 +52,28 @@ public class ProjectCalendar {
     }
 
     /**
+     * Constructs a `ProjectCalendar` with the specified activity, scheduled day, hour, minute and second.
+     *
+     * @param activityScheduled The activity to be scheduled.
+     * @param scheduledDay The day on which the activity is scheduled.
+     * @param hour The hour of the scheduled activity.
+     * @param minute The minute of the scheduled activity.
+     * @param second The second of the scheduled activity.
+     */
+    public ProjectCalendar(IActivity activityScheduled, ScheduledDay scheduledDay, Calendar hour, Calendar minute, Calendar second) {
+        this.scheduledDay = scheduledDay;
+        this.activity = activityScheduled;
+        this.scheduledDay.setHour(hour.get(Calendar.HOUR_OF_DAY));
+        this.scheduledDay.setMinute(minute.get(Calendar.MINUTE));
+        this.scheduledDay.setSecond(second.get(Calendar.SECOND));
+    }
+
+    public Report generateReport(scheduledDay startDate, scheduledDay endDate) {
+        return new Report(this.activity, this.scheduledDay, startDate, endDate);
+
+    }
+
+    /**
      * Retrieves the scheduled day.
      *
      * @return The `ScheduledDay` object representing the scheduled day.

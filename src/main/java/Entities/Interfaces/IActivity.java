@@ -29,6 +29,12 @@ public interface IActivity {
     void setDescription(String description);
 
     /**
+     * Returns the estimated duration of the current Activity
+     * @return the estimated duration of the current Activity
+     */
+    int getEstimatedDuration();
+
+    /**
      * Returns the status of the scheduled Activity.
      * @return true if the Activity is marked as complete
      *              otherwise false if the Activity is still pending
