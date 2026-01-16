@@ -105,6 +105,60 @@ public class ScheduledDay {
     }
 
     /**
+     * Replaces the year component of the scheduled day.
+     *
+     * @param year the new year to represent
+     */
+    public void setYear(int year) {
+        scheduledDay.set(Calendar.YEAR, year);
+    }
+
+    /**
+     * Replaces the month component of the scheduled day.
+     *
+     * @param month the new month to represent
+     */
+    public void setMonth(int month) {
+        scheduledDay.set(Calendar.MONTH, month);
+    }
+
+    /**
+     * Replaces the day component of the scheduled day.
+     *
+     * @param day the new day to represent
+     */
+    public void setDay(int day) {
+        scheduledDay.set(Calendar.DAY_OF_MONTH, day);
+    }
+
+    /**
+     * Replaces the hour component of the scheduled day.
+     *
+     * @param hour the new hour to represent
+     */
+    public void setHour(int hour) {
+        scheduledDay.set(Calendar.HOUR_OF_DAY, hour);
+    }
+
+    /**
+     * Replaces the minute component of the scheduled day.
+     *
+     * @param minute the new minute to represent
+     */
+    public void setMinute(int minute) {
+        scheduledDay.set(Calendar.MINUTE, minute);
+    }
+
+    /**
+     * Replaces the second component of the scheduled day.
+     *
+     * @param second the new second to represent
+     */
+    public void setSecond(int second) {
+        scheduledDay.set(Calendar.SECOND, second);
+    }
+
+    /**
      * Returns the wrapped {@link Calendar} instance.
      *
      * @return the Calendar instance, may be null
