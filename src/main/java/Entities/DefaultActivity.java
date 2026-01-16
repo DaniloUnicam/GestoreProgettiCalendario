@@ -2,44 +2,46 @@ package Entities;
 
 import Entities.Interfaces.IActivity;
 
-import java.util.Calendar;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DefaultActivity implements IActivity {
+    private static final AtomicInteger idCount = new AtomicInteger(0);
     private int id;
     private String description;
-    private Calendar estimatedDuration;
-    private Calendar actualDuration;
-    private boolean status;
-
-    /**
-     * The default constructor, used for temporary Activities
-     */
-    public DefaultActivity() {
-
-    }
+    private int estimatedDuration;
+    private boolean isCompleted;
 
     /**
      * The Activity constructor.
-     * @param id the id of the Activity
      * @param description the description of the Activity
-     * @param estimatedDuration the date and time of the Activity
-     * @param status the status of the Activity, can be completed (true) or pending (false)
+     * @param estimatedDuration the estimated duration of the Activity
      */
-    public DefaultActivity(int id, String description, Calendar estimatedDuration, boolean status) {
+    public DefaultActivity(String description, int estimatedDuration) {
         if(!description.isEmpty()) {
-            this.id = id;
             this.description = description;
         }
-        if(estimatedDuration != null) {
+        if(estimatedDuration >= 0) {
             this.estimatedDuration = estimatedDuration;
         }
-        this.status = status;
+        id = idCount.incrementAndGet();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        DefaultActivity that = (DefaultActivity) o;
+        return id == that.id && isCompleted == that.isCompleted && Objects.equals(description, that.description) && Objects.equals(estimatedDuration, that.estimatedDuration);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, estimatedDuration, isCompleted);
+    }
 
     @Override
     public int getId() {
-        return id++;
+        return id;
     }
 
     @Override
@@ -58,23 +60,13 @@ public class DefaultActivity implements IActivity {
     }
 
     @Override
-    public long getEstimatedDurationInMillis() {
-        return this.estimatedDuration.getTimeInMillis();
-    }
-
-    @Override
-    public void setEstimatedDurationInMillis(Calendar estimatedDuration) {
-        this.estimatedDuration = estimatedDuration;
-    }
-
-    @Override
-    public long getActualDurationInMillis() {
-        return this.actualDuration.getTimeInMillis();
-    }
-
-    @Override
     public boolean isCompleted() {
-        return this.status;
+        return this.isCompleted;
+    }
+
+    @Override
+    public void setCompleted(boolean completed) {
+        this.isCompleted = completed;
     }
 
 

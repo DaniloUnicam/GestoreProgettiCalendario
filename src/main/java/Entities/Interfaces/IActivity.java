@@ -29,27 +29,16 @@ public interface IActivity {
     void setDescription(String description);
 
     /**
-     * Estimated duration of the current Activity
-     * @return the estimated duration of the Activity in millis
-     */
-    long getEstimatedDurationInMillis();
-
-    /**
-     * Changes the estimated duration of the current Activity
-     * @param estimatedDuration the estimated duration of the Activity in millis
-     */
-    void setEstimatedDurationInMillis(Calendar estimatedDuration);
-
-    /**
-     * Returns the actual duration of the current Activity
-     * @return the actual duration of the current Activity
-     */
-    long getActualDurationInMillis();
-
-    /**
      * Returns the status of the scheduled Activity.
      * @return true if the Activity is marked as complete
      *              otherwise false if the Activity is still pending
      */
     boolean isCompleted();
+
+    /**
+     * Sets the status of a scheduled Activity.
+     * @param completed
+     * @return
+     */
+    void setCompleted(boolean completed);
 }
