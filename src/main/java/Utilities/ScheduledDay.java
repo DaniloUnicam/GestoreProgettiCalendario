@@ -1,42 +1,128 @@
 package Utilities;
 
+import java.util.Calendar;
 
+/**
+ * A simple wrapper around {@link java.util.Calendar} that provides convenient
+ * accessor methods for individual date/time components.
+ *
+ * <p>This class exposes getters for year, month, day-of-month, hour (24-hour),
+ * minute, second and day-of-week. It also allows retrieval and replacement of
+ * the underlying {@code Calendar} instance.</p>
+ *
+ * <p>Note: This class does not enforce non-nullity of the wrapped Calendar.
+ * If a null value is provided to the constructor or via {@link #setScheduledDay},
+ * subsequent calls to the accessor methods will result in a {@link NullPointerException}.</p>
+ */
 public class ScheduledDay {
-    private Calendar day;
-    private Calendar month;
-    private Calendar year;
+    /**
+     * The wrapped Calendar instance representing the scheduled date/time.
+     * May be null if not initialized.
+     */
+    private Calendar scheduledDay;
 
-
-
-    public ScheduledDay (Calendar day, Calendar month, Calendar year) {
-        if (day != null || month != null || year != null){
-            this.day = day;
-            this.month = month;
-            this.year = year;
+    /**
+     * Constructs a ScheduledDay that wraps the provided {@link Calendar}.
+     *
+     * @param scheduledDay the Calendar instance to wrap; may be null. If null,
+     *                     the internal field is left unset and accessor methods
+     *                     will throw {@link NullPointerException}.
+     */
+    public ScheduledDay(Calendar scheduledDay) {
+        if (scheduledDay != null) {
+            this.scheduledDay = scheduledDay;
         }
     }
 
-    public Calendar getDay() {
-        return day;
+    /**
+     * Returns the year component of the wrapped calendar.
+     *
+     * @return the year as an int (e.g., 2026)
+     * @throws NullPointerException if the wrapped Calendar is null
+     */
+    public int getYear() {
+        return scheduledDay.get(Calendar.YEAR);
     }
 
-    public void setDay(Calendar day) {
-        this.day = day;
+    /**
+     * Returns the month component of the wrapped calendar.
+     *
+     * @return the month as an int (0-11, where 0 = January)
+     * @throws NullPointerException if the wrapped Calendar is null
+     */
+    public int getMonth() {
+        return scheduledDay.get(Calendar.MONTH);
     }
 
-    public Calendar getMonth() {
-        return month;
+    /**
+     * Returns the day of month component of the wrapped calendar.
+     *
+     * @return the day of month as an int (1-31)
+     * @throws NullPointerException if the wrapped Calendar is null
+     */
+    public int getDay() {
+        return scheduledDay.get(Calendar.DAY_OF_MONTH);
     }
 
-    public void setMonth(Calendar month) {
-        this.month = month;
+    /**
+     * Returns the hour of day (24-hour clock) component of the wrapped calendar.
+     *
+     * @return the hour of day as an int (0-23)
+     * @throws NullPointerException if the wrapped Calendar is null
+     */
+    public int getHour() {
+        return scheduledDay.get(Calendar.HOUR_OF_DAY);
     }
 
-    public Calendar getYear() {
-        return year;
+    /**
+     * Returns the minute component of the wrapped calendar.
+     *
+     * @return the minutes as an int (0-59)
+     * @throws NullPointerException if the wrapped Calendar is null
+     */
+    public int getMinute() {
+        return scheduledDay.get(Calendar.MINUTE);
     }
 
-    public void setYear(Calendar year) {
-        this.year = year;
+    /**
+     * Returns the second component of the wrapped calendar.
+     *
+     * @return the seconds as an int (0-59)
+     * @throws NullPointerException if the wrapped Calendar is null
+     */
+    public int getSecond() {
+        return scheduledDay.get(Calendar.SECOND);
+    }
+
+    /**
+     * Returns the day of week component of the wrapped calendar.
+     *
+     * @return the day of week as an int (1-7, where 1 = Sunday)
+     * @throws NullPointerException if the wrapped Calendar is null
+     */
+    public int getDayOfWeek() {
+        return scheduledDay.get(Calendar.DAY_OF_WEEK);
+    }
+
+    /**
+     * Returns the wrapped {@link Calendar} instance.
+     *
+     * @return the Calendar instance, may be null
+     */
+    public Calendar getScheduledDay() {
+        return scheduledDay;
+    }
+
+    /**
+     * Replaces the wrapped {@link Calendar} instance.
+     *
+     * @param scheduledDay the new Calendar instance to wrap; may be null
+     */
+    public void setScheduledDay(Calendar scheduledDay) {
+        this.scheduledDay = scheduledDay;
+    }
+
+    public String toString() {
+        return scheduledDay.getTime().toString();
     }
 }
