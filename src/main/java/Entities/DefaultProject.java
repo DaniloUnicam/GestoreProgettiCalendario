@@ -4,17 +4,23 @@ import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class DefaultProject implements IProject {
+public class DefaultProject<T extends IActivity> implements IProject<T> {
     //A name appropriate to the current ongoing Project
     private String name;
     //A description containing information about the current ongoing Project
     private String description;
-    //A list of Activities
-    private ArrayList<IActivity> activities;
+    //A list of multiple Activity types
+    private List<T> activities;
     //A project is closed when all activities are completed
     private boolean isClosed;
 
+    /**
+     * The Project constructor.
+     * @param name the name of the Project
+     * @param description the description of the Project
+     */
     public DefaultProject(String name, String description) {
         this.name = name;
         this.description = description;
@@ -22,7 +28,13 @@ public class DefaultProject implements IProject {
         this.activities = new ArrayList<>();
     }
 
-    public DefaultProject(String name, String description, ArrayList<IActivity> activities) {
+    /**
+     * The Project constructor.
+     * @param name the name of the Project
+     * @param description the description of the Project
+     * @param activities the list of activities of the Project
+     */
+    public DefaultProject(String name, String description, List<T> activities) {
         this.name = name;
         this.description = description;
         isClosed = false;
@@ -32,16 +44,29 @@ public class DefaultProject implements IProject {
         this.activities = activities;
     }
 
-    public void addActivity(IActivity activity)
+    /**
+     * Adds an activity to the current Project
+     * @param activity the activity to be added
+     */
+    public void addActivity(T activity)
     {
         this.activities.add(activity);
     }
 
-    public void removeActivity(IActivity activity)
+    /**
+     * Removes an activity from the current Project
+     * @param activity the activity to be removed
+     */
+    public void removeActivity(T activity)
     {
         this.activities.remove(activity);
     }
 
+    /**
+     * Gets an activity from the current Project based on its id
+     * @param id the id of the activity to be retrieved
+     * @return the activity with the specified id
+     */
     public IActivity getActivity(int id) {
         return this.activities.get(id);
     }
@@ -67,12 +92,12 @@ public class DefaultProject implements IProject {
     }
 
     @Override
-    public ArrayList<IActivity> getActivities() {
+    public List<T> getActivities() {
         return activities;
     }
 
     @Override
-    public void setActivities(ArrayList<IActivity> activities) {
+    public void setActivities(List<T> activities) {
         this.activities = activities;
     }
 
@@ -86,6 +111,9 @@ public class DefaultProject implements IProject {
         isClosed = closed;
     }
 
+    /**
+     * Closes the current Project if all activities have been marked as completed
+     */
     public void close() {
         if(this.activities.stream().allMatch(IActivity::isCompleted)){
             isClosed = true;

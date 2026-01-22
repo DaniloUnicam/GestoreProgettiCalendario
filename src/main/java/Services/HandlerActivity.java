@@ -1,22 +1,23 @@
 package Services;
 
-import Entities.DefaultProject;
 import Entities.Interfaces.IActivity;
+import Entities.Interfaces.IProject;
 
 public class HandlerActivity {
+    //The activity being handled
     private IActivity activity;
 
-    public void addActivity(DefaultProject project)
+    public void addActivity(IProject project)
     {
         project.addActivity(activity);
     }
 
-    public void  removeActivity(DefaultProject project)
+    public void  removeActivity(IProject project)
     {
         project.removeActivity(activity);
     }
 
-    public IActivity getActivity(DefaultProject project,int id)
+    public IActivity getActivity(IProject project,int id)
     {
         return project.getActivity(id);
     }

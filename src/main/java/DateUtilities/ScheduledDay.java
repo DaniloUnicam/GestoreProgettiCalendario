@@ -1,6 +1,9 @@
 package DateUtilities;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * A simple wrapper around {@link java.util.Calendar} that provides convenient
@@ -14,7 +17,7 @@ import java.util.Calendar;
  * If a null value is provided to the constructor or via {@link #setScheduledDay},
  * subsequent calls to the accessor methods will result in a {@link NullPointerException}.</p>
  */
-public class ScheduledDay {
+public class ScheduledDay implements Comparable<ScheduledDay>{
     /**
      * The wrapped Calendar instance representing the scheduled date/time.
      * May be null if not initialized.
@@ -93,6 +96,7 @@ public class ScheduledDay {
     public int getSecond() {
         return scheduledDay.get(Calendar.SECOND);
     }
+
 
     /**
      * Returns the day of week component of the wrapped calendar.
@@ -178,5 +182,29 @@ public class ScheduledDay {
 
     public String toString() {
         return scheduledDay.getTime().toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ScheduledDay that = (ScheduledDay) o;
+        return Objects.equals(scheduledDay, that.scheduledDay);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(scheduledDay);
+    }
+
+    @Override
+    public int compareTo(@NotNull ScheduledDay day) {
+        if ((this.getYear() > day.getYear()) ||
+                (this.getYear() == day.getYear() && this.getMonth() > day.getMonth())
+                || this.getYear() == day.getYear() && this.getMonth() == day.getMonth() && this.getDay() > day.getDay()) {
+            return -1;
+        } else if (this.equals(day)){
+            return 0;
+    }
+        return 1;
     }
 }

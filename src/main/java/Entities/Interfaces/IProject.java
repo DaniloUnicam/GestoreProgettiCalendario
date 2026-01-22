@@ -1,13 +1,13 @@
 package Entities.Interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Project is a list of Activities
  * Each Activity marks a milestone, leading to the completition of the ongoing Project
- * When each Activity is marked as completed, the Project is successfully completed as well.
+ * When each Activity is marked as completed, the Project is successfully marked as completed as well
  */
-public interface IProject {
+public interface IProject<T extends IActivity> {
 
     /**
      * The name of the current Project
@@ -35,12 +35,12 @@ public interface IProject {
      * The list of the activities listed inside the current Project
      * @return a list of activities of the current Project
      */
-    ArrayList<IActivity> getActivities();
+    List<T> getActivities();
 
     /**
      * Sets the list of activities for the current Project
      */
-    void setActivities(ArrayList<IActivity> activities);
+    void setActivities(List<T> activities);
 
     /**
      * Marks as closed the current Project, based on the status of the contained activities

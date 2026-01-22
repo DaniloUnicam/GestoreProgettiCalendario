@@ -1,8 +1,11 @@
 package Entities.Interfaces;
 
-import java.util.Calendar;
+import DateUtilities.DurationAware;
 
-public interface IActivity {
+/**
+ * Interface representing an Activity with duration awareness.
+ */
+public interface IActivity extends DurationAware {
 
     /**
      * The id of the current Activity
@@ -27,12 +30,6 @@ public interface IActivity {
      * @param description the new description to update the current Activity
      */
     void setDescription(String description);
-
-    /**
-     * Returns the estimated duration of the current Activity
-     * @return the estimated duration of the current Activity
-     */
-    int getEstimatedDuration();
 
     /**
      * Returns the status of the scheduled Activity.

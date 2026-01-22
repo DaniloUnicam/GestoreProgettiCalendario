@@ -1,17 +1,22 @@
 package Entities.Interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Interface representing a report containing activities and projects.
+ */
 public interface IReport {
 
-    ArrayList<IActivity> getListOfActivities();
-
-    ArrayList<IProject> getListOfProjects();
+    /**
+     * A list of all activities included in the report.
+     * @return the list of activities
+     */
+    List<IActivity> getListOfActivities();
 
     /**
-     * Calculates the total estimated duration of all activities across all projects in the report.
-     * @return the total estimated duration in hours
+     * A list of all projects included in the report.
+     * @return the list of projects
      */
-    int getTotalEstimatedDurationInHours();
+    List<IProject<? extends IActivity>> getListOfProjects();
 
 }

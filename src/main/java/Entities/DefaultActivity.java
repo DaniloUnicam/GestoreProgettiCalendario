@@ -1,11 +1,12 @@
 package Entities;
 
+import DateUtilities.DurationAware;
 import Entities.Interfaces.IActivity;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DefaultActivity implements IActivity {
+public class DefaultActivity implements IActivity, DurationAware {
     private static final AtomicInteger idCount = new AtomicInteger(0);
     private int id;
     private String description;
@@ -60,7 +61,7 @@ public class DefaultActivity implements IActivity {
     }
 
     @Override
-    public int getEstimatedDuration() {
+    public int getTotalEstimatedDurationInMinutes() {
         return this.estimatedDuration;
     }
 
