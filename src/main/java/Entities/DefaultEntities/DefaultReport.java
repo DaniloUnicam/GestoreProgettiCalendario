@@ -1,4 +1,4 @@
-package Entities;
+package Entities.DefaultEntities;
 
 import DateUtilities.DurationAware;
 import Entities.Interfaces.IActivity;
@@ -6,13 +6,22 @@ import Entities.Interfaces.IProject;
 import Entities.Interfaces.IReport;
 
 import java.util.List;
-
-public class DefaultReport implements IReport, DurationAware {
-
+/**
+ * Default implementation of the IReport interface.
+ * @param <T> the type of activity associated with the report
+ */
+public class DefaultReport<T extends IActivity> implements IReport, DurationAware {
+    // A list of multiple Project types
     private final List<IProject<? extends IActivity>> projects;
-    private final List<IActivity> activities;
+    // A list of multiple Activity types
+    private final List<T> activities;
 
-    public DefaultReport(List<IProject<? extends IActivity>> projects, List<IActivity> activities) {
+    /**
+     * The Report constructor.
+     * @param projects the list of projects of the Report
+     * @param activities the list of activities of the Report
+     */
+    public DefaultReport(List<IProject<? extends IActivity>> projects, List<T> activities) {
         this.projects = projects;
         this.activities = activities;
     }
@@ -23,7 +32,7 @@ public class DefaultReport implements IReport, DurationAware {
     }
 
     @Override
-    public List<IActivity> getListOfActivities() {
+    public List<T> getListOfActivities() {
         return this.activities;
     }
 

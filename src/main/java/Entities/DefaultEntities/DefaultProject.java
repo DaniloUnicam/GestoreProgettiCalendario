@@ -1,11 +1,14 @@
-package Entities;
+package Entities.DefaultEntities;
 
 import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Default implementation of the IProject interface.
+ * @param <T> the type of activity associated with the project
+ */
 public class DefaultProject<T extends IActivity> implements IProject<T> {
     //A name appropriate to the current ongoing Project
     private String name;
@@ -44,30 +47,20 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
         this.activities = activities;
     }
 
-    /**
-     * Adds an activity to the current Project
-     * @param activity the activity to be added
-     */
+    @Override
     public void addActivity(T activity)
     {
         this.activities.add(activity);
     }
 
-    /**
-     * Removes an activity from the current Project
-     * @param activity the activity to be removed
-     */
+    @Override
     public void removeActivity(T activity)
     {
         this.activities.remove(activity);
     }
 
-    /**
-     * Gets an activity from the current Project based on its id
-     * @param id the id of the activity to be retrieved
-     * @return the activity with the specified id
-     */
-    public IActivity getActivity(int id) {
+    @Override
+    public T getActivity(int id) {
         return this.activities.get(id);
     }
 

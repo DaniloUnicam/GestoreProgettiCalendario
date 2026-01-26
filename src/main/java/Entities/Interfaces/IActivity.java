@@ -4,6 +4,8 @@ import DateUtilities.DurationAware;
 
 /**
  * Interface representing an Activity with duration awareness.
+ * An Activity is a specific task or action that has a defined duration and can be tracked.
+ * Once an Activity is completed, it can be marked as such.
  */
 public interface IActivity extends DurationAware {
 

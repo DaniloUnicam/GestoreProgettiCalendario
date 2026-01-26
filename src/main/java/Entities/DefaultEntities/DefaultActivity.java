@@ -1,16 +1,24 @@
-package Entities;
+package Entities.DefaultEntities;
 
 import DateUtilities.DurationAware;
 import Entities.Interfaces.IActivity;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * Default implementation of the IActivity interface.
+ * Represents an activity with a unique ID, description, estimated duration, and completion status.
+ */
 public class DefaultActivity implements IActivity, DurationAware {
+    // Atomic counter to generate unique IDs
     private static final AtomicInteger idCount = new AtomicInteger(0);
+    // Unique identifier for the Activity
     private int id;
+    // Description of the Activity
     private String description;
+    // Estimated duration of the Activity in minutes
     private int estimatedDuration;
+    // Completion status of the Activity
     private boolean isCompleted;
 
     /**

@@ -6,6 +6,7 @@ import java.util.List;
  * A Project is a list of Activities
  * Each Activity marks a milestone, leading to the completition of the ongoing Project
  * When each Activity is marked as completed, the Project is successfully marked as completed as well
+ * @param <T> the type of activity associated with the project
  */
 public interface IProject<T extends IActivity> {
 
@@ -41,6 +42,25 @@ public interface IProject<T extends IActivity> {
      * Sets the list of activities for the current Project
      */
     void setActivities(List<T> activities);
+
+    /**
+     * Adds an activity to the current Project
+     * @param activity the activity to be added
+     */
+    public void addActivity(T activity);
+
+    /**
+     * Removes an activity from the current Project
+     * @param activity the activity to be removed
+     */
+    public void removeActivity(T activity);
+
+    /**
+     * Gets an activity from the current Project based on its id
+     * @param id the id of the activity to be retrieved
+     * @return the activity with the specified id
+     */
+    public T getActivity(int id);
 
     /**
      * Marks as closed the current Project, based on the status of the contained activities

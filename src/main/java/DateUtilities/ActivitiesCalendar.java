@@ -1,6 +1,6 @@
 package DateUtilities;
 
-import Entities.DefaultReport;
+import Entities.DefaultEntities.DefaultReport;
 import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IReport;
 
@@ -31,13 +31,21 @@ public class ActivitiesCalendar {
         this.activitiesScheduled = new HashMap<>(activitiesScheduled);
     }
 
+    /**
+     * Generates a report of activities scheduled between the specified starting and ending days.
+     *
+     * @param startingDay The starting day of the report range.
+     * @param endingDay   The ending day of the report range.
+     * @return An `IReport` object containing the activities scheduled within the specified range.
+     */
     public IReport generateReport(ScheduledDay startingDay, ScheduledDay endingDay) {
         return new DefaultReport(
                 List.of(),
                 activitiesScheduled.entrySet().stream()
                         .filter(entry -> {
                             ScheduledDay day = entry.getKey();
-                            return (day.compareTo(startingDay) >= 0) && (day.compareTo(endingDay) <= 0);})
+                            return (day.compareTo(startingDay) >= 0) && (day.compareTo(endingDay) <= 0);
+                        })
                         .flatMap(entry -> entry.getValue().stream())
                         .toList()
         );
@@ -56,7 +64,7 @@ public class ActivitiesCalendar {
     /**
      * Updates the scheduled day.
      *
-     * @param scheduledDay The new `ScheduledDay` object to set.
+     * @param scheduledDay The new `ScheduledDay` object to set
      */
     public void setScheduledDay(ScheduledDay scheduledDay) {
         this.scheduledDay = scheduledDay;

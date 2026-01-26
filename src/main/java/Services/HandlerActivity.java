@@ -3,9 +3,9 @@ package Services;
 import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
 
-public class HandlerActivity {
+public class HandlerActivity<T extends IActivity> {
     //The activity being handled
-    private IActivity activity;
+    private T activity;
 
     public void addActivity(IProject project)
     {

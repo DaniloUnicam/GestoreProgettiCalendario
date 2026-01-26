@@ -2,6 +2,8 @@ package DateUtilities;
 
 /**
  * An interface for entities that can provide estimated duration information.
+ * Entities implementing this interface should be able to calculate the total estimated duration
+ * of their activities in both minutes and hours.
  */
 public interface DurationAware {
     /**

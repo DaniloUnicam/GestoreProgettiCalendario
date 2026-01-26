@@ -180,6 +180,7 @@ public class ScheduledDay implements Comparable<ScheduledDay>{
         this.scheduledDay = scheduledDay;
     }
 
+    @Override
     public String toString() {
         return scheduledDay.getTime().toString();
     }
