@@ -4,17 +4,33 @@ import DateUtilities.DurationAware;
 import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
 import Entities.Interfaces.IReport;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.hibernate.annotations.Table;
 
 import java.util.List;
 /**
  * Default implementation of the IReport interface.
  * @param <T> the type of activity associated with the report
  */
+@Entity
+@Table(appliesTo = "DefaultReport")
 public class DefaultReport<T extends IActivity> implements IReport, DurationAware {
+    // Unique identifier for the Report
+    @Id
+    private Long id;
     // A list of multiple Project types
     private final List<IProject<? extends IActivity>> projects;
     // A list of multiple Activity types
     private final List<T> activities;
+
+    /**
+     * The default constructor for DefaultReport.
+     */
+    public DefaultReport() {
+        this.projects = null;
+        this.activities = null;
+    }
 
     /**
      * The Report constructor.

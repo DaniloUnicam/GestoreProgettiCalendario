@@ -3,7 +3,7 @@ package Services;
 import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
 
-public class HandlerActivity<T extends IActivity> {
+public class ActivityService<T extends IActivity> {
     //The activity being handled
     private T activity;
 

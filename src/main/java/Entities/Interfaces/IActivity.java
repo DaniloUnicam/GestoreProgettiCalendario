@@ -13,13 +13,13 @@ public interface IActivity extends DurationAware {
      * The id of the current Activity
      * @return the id of the current Activity
      */
-    int getId();
+    Long getId();
 
     /**
      * Changes the id of the current Activity with another one
      * @param id the new id of the Activity
      */
-    void setId(int id);
+    void setId(Long id);
 
     /**
      * Returns the description of the current Activity

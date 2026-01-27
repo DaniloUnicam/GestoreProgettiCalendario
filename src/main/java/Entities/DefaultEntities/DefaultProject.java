@@ -2,6 +2,9 @@ package Entities.DefaultEntities;
 
 import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.hibernate.annotations.Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +12,12 @@ import java.util.List;
  * Default implementation of the IProject interface.
  * @param <T> the type of activity associated with the project
  */
+@Entity
+@Table(appliesTo = "DefaultProject")
 public class DefaultProject<T extends IActivity> implements IProject<T> {
+    // Unique identifier for the Project
+    @Id
+    private Long id;
     //A name appropriate to the current ongoing Project
     private String name;
     //A description containing information about the current ongoing Project
@@ -18,6 +26,12 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
     private List<T> activities;
     //A project is closed when all activities are completed
     private boolean isClosed;
+
+    /**
+     * The default constructor for DefaultProject.
+     */
+    public DefaultProject() {
+    }
 
     /**
      * The Project constructor.

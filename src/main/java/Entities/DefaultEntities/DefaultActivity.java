@@ -2,24 +2,32 @@ package Entities.DefaultEntities;
 
 import DateUtilities.DurationAware;
 import Entities.Interfaces.IActivity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.hibernate.annotations.Table;
 
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Default implementation of the IActivity interface.
  * Represents an activity with a unique ID, description, estimated duration, and completion status.
  */
+@Entity
+@Table(appliesTo = "DefaultActivity")
 public class DefaultActivity implements IActivity, DurationAware {
-    // Atomic counter to generate unique IDs
-    private static final AtomicInteger idCount = new AtomicInteger(0);
     // Unique identifier for the Activity
-    private int id;
+    @Id
+    private Long id;
     // Description of the Activity
     private String description;
     // Estimated duration of the Activity in minutes
     private int estimatedDuration;
     // Completion status of the Activity
     private boolean isCompleted;
+
+    /**
+     * The default constructor for DefaultActivity.
+     */
+    public DefaultActivity() {}
 
     /**
      * The Activity constructor.
@@ -33,7 +41,6 @@ public class DefaultActivity implements IActivity, DurationAware {
         if(estimatedDuration >= 0) {
             this.estimatedDuration = estimatedDuration;
         }
-        id = idCount.incrementAndGet();
     }
 
     @Override
@@ -49,12 +56,12 @@ public class DefaultActivity implements IActivity, DurationAware {
     }
 
     @Override
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

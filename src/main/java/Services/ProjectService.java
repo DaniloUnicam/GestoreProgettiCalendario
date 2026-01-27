@@ -3,7 +3,7 @@ package Services;
 import Entities.Interfaces.IProject;
 
 
-public class HandlerProject<T extends IProject> {
+public class ProjectService<T extends IProject> {
     //The project being handled
     private T project;
 
@@ -11,7 +11,7 @@ public class HandlerProject<T extends IProject> {
      * The HandlerProject constructor.
      * @param project the project to be handled
      */
-    public HandlerProject(T project) {
+    public ProjectService(T project) {
         this.project = project;
     }
 

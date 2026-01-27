@@ -6,13 +6,13 @@ import Entities.Interfaces.IReport;
 
 import java.util.List;
 
-public class HandlerReport {
+public class ReportService {
     private IReport report;
 
     /** Constructor of the HandlerReport class.
      * @param report the report to be handled
      */
-    public HandlerReport(IReport report) {
+    public ReportService(IReport report) {
         this.report = report;
     }
 
