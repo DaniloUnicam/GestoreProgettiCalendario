@@ -1,15 +1,13 @@
-package HibernateTests;
+package Hibernate;
 
 import Entities.DefaultEntities.DefaultActivity;
 import Entities.DefaultEntities.DefaultProject;
-import Hibernate.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class HibernateExampleTest {
 
@@ -24,6 +22,9 @@ public class HibernateExampleTest {
         HibernateUtil.shutdown();
     }
 
+    /**
+     * Test to save and load one DefaultActivity
+     */
     @Test
     void saveAndLoadDefaultActivity() {
         DefaultActivity defaultActivity = new DefaultActivity("buy food", 60);
@@ -34,16 +35,21 @@ public class HibernateExampleTest {
             session.persist(defaultActivity);
             tx.commit();
             activityId = defaultActivity.getId(); // Recuperiamo l'ID generato
+            Assertions.assertNotNull(activityId);
+            Assertions.assertEquals(activityId, defaultActivity.getId());
         }
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             DefaultActivity loaded = session.get(DefaultActivity.class, activityId);
 
-            assertNotNull(loaded, "L'attività dovrebbe essere stata salvata");
-            assertEquals("buy food", loaded.getDescription());
+            Assertions.assertNotNull(loaded, "The Activity saved should be found in DB");
+            Assertions.assertEquals("buy food", loaded.getDescription());
         }
     }
 
+    /**
+     * Test to save and load one DefaultProject with one DefaultActivity with description and duration
+     */
     @Test
     void saveAndLoadDefaultProject() {
         DefaultProject<DefaultActivity> p = new DefaultProject<>("My Default Project", "Todo tuesday");
@@ -55,19 +61,21 @@ public class HibernateExampleTest {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
-            session.persist(p); // CascadeType.ALL salverà anche l'attività
+            session.persist(p);
             tx.commit();
-            projectId = p.getId(); // Recuperiamo l'ID del progetto
+            // Project ID from the persisted project
+            projectId = p.getId();
+            Assertions.assertNotNull(projectId);
         }
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             DefaultProject<?> loaded = session.get(DefaultProject.class, projectId);
 
-            assertNotNull(loaded, "Il progetto dovrebbe esistere nel DB");
-            assertEquals("My Default Project", loaded.getName());
+            Assertions.assertNotNull(loaded, "The Project saved should be found in DB");
+            Assertions.assertEquals("My Default Project", loaded.getName());
 
-            assertFalse(loaded.getActivities().isEmpty(), "Il progetto dovrebbe avere attività collegate");
-            assertEquals("buy food", ((DefaultActivity) loaded.getActivities().get(0)).getDescription());
+            Assertions.assertFalse(loaded.getActivities().isEmpty(), "The Project should have activities");
+            Assertions.assertEquals("buy food", ((DefaultActivity) loaded.getActivities().get(0)).getDescription());
         }
     }
 }

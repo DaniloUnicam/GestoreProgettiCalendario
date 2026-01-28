@@ -4,10 +4,7 @@ import DateUtilities.DurationAware;
 import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
 import Entities.Interfaces.IReport;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -24,9 +21,10 @@ public class DefaultReport<T extends IActivity> implements IReport<T>, DurationA
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
     // A list of multiple Project types
-    private final List<IProject<? extends IActivity>> projects;
-    // A list of multiple Activity types
-    private final List<T> activities;
+    @OneToMany(mappedBy = "projects", cascade = CascadeType.ALL)
+    private List<DefaultProject<T>> projects;
+    @OneToMany(mappedBy = "activities", cascade = CascadeType.ALL)
+    private List<T> activities;
 
     /**
      * The default constructor for DefaultReport.
@@ -42,13 +40,13 @@ public class DefaultReport<T extends IActivity> implements IReport<T>, DurationA
      * @param projects   the list of projects of the Report
      * @param activities the list of activities of the Report
      */
-    public DefaultReport(List<IProject<? extends IActivity>> projects, List<T> activities) {
+    public DefaultReport(List<DefaultProject<T>> projects, List<T> activities) {
         this.projects = projects;
         this.activities = activities;
     }
 
     @Override
-    public List<IProject<? extends IActivity>> getListOfProjects() {
+    public List<DefaultProject<T>> getListOfProjects() {
         return this.projects;
     }
 

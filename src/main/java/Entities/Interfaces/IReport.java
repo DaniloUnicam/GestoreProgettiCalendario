@@ -22,7 +22,7 @@ public interface IReport<T extends IActivity> {
      *
      * @return the list of projects
      */
-    List<IProject<? extends IActivity>> getListOfProjects();
+    List<? extends IProject<T>> getListOfProjects();
 
 
 }

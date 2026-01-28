@@ -11,6 +11,13 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
 }
+sourceSets {
+    test {
+        java {
+            srcDirs("src/test/java")
+        }
+    }
+}
 
 // Librarys configuration for JavaFX
 javafx {
@@ -29,26 +36,28 @@ java {
 }
 // Dependencies configuration
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    // --- JUnit ---
+    testImplementation(platform("org.junit:junit-bom:5.5.2"))
+    // Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation(kotlin("stdlib-jdk8"))
+    // Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:6.0.2")
     // --- Hibernate & Database ---
-    // Hibernate 6.x richiede Jakarta Persistence (non javax)
     implementation("org.hibernate.orm:hibernate-core:6.4.4.Final")
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
     implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
 
-    // Database H2 (ottimo per test locali) o MySQL
     implementation("com.h2database:h2:2.2.224")
-    // implementation("com.mysql:mysql-connector-j:8.3.0") // Decommenta se usi MySQL
+    // implementation("com.mysql:mysql-connector-j:8.3.0")
 
     // --- Testing ---
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 // Test configuration
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
 
     testLogging {
