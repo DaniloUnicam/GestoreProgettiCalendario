@@ -8,6 +8,7 @@ package DateUtilities;
 public interface DurationAware {
     /**
      * Calculates the total estimated duration of all activities across all projects in the report.
+     *
      * @return the total estimated duration in hours
      */
     default int getTotalEstimatedDurationInHours() {
@@ -16,6 +17,7 @@ public interface DurationAware {
 
     /**
      * Calculates the total estimated duration of all activities across all projects in the report.
+     *
      * @return the total estimated duration in minutes
      */
     int getTotalEstimatedDurationInMinutes();

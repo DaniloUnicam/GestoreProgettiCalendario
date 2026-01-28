@@ -1,25 +1,29 @@
 package Services;
 
 import Entities.Interfaces.IActivity;
-import Entities.Interfaces.IProject;
+import Repositories.ActivityRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
-public class ActivityService<T extends IActivity> {
-    //The activity being handled
-    private T activity;
+@ApplicationScoped
+public class ActivityService {
+    private final ActivityRepository _activityRepository;
 
-    public void addActivity(IProject project)
-    {
-        project.addActivity(activity);
+    @Inject
+    public ActivityService(ActivityRepository activityRepository) {
+        _activityRepository = activityRepository;
     }
 
-    public void  removeActivity(IProject project)
-    {
-        project.removeActivity(activity);
+    public void saveActivity(IActivity activity) {
+        _activityRepository.save(activity);
     }
 
-    public IActivity getActivity(IProject project,int id)
-    {
-        return project.getActivity(id);
+    public void deleteActivity(IActivity activity) {
+        _activityRepository.delete(activity);
+    }
+
+    public IActivity getActivityById(Long id) {
+        return _activityRepository.findById(id);
     }
 
 }

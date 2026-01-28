@@ -15,5 +15,7 @@
 
         <!-- Register mapped classes -->
         <mapping class="Entities.DefaultEntities.DefaultActivity"/>
+        <mapping class="Entities.DefaultEntities.DefaultProject"/>
+        <mapping class="Entities.DefaultEntities.DefaultReport"/>
     </session-factory>
 </hibernate-configuration>

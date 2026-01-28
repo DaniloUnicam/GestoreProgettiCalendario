@@ -2,29 +2,34 @@ package Entities.DefaultEntities;
 
 import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import org.hibernate.annotations.Table;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Default implementation of the IProject interface.
+ *
  * @param <T> the type of activity associated with the project
  */
 @Entity
-@Table(appliesTo = "DefaultProject")
+@Table(name = "Projects")
 public class DefaultProject<T extends IActivity> implements IProject<T> {
     // Unique identifier for the Project
     @Id
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
     //A name appropriate to the current ongoing Project
+    @Column(name = "project_name", length = 100)
     private String name;
     //A description containing information about the current ongoing Project
+    @Column(name = "project_description", length = 100)
     private String description;
     //A list of multiple Activity types
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DefaultActivity.class)
     private List<T> activities;
     //A project is closed when all activities are completed
+    @Column(name = "project_closure_status", length = 100)
     private boolean isClosed;
 
     /**
@@ -35,7 +40,8 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
 
     /**
      * The Project constructor.
-     * @param name the name of the Project
+     *
+     * @param name        the name of the Project
      * @param description the description of the Project
      */
     public DefaultProject(String name, String description) {
@@ -47,29 +53,25 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
 
     /**
      * The Project constructor.
-     * @param name the name of the Project
+     *
+     * @param name        the name of the Project
      * @param description the description of the Project
-     * @param activities the list of activities of the Project
+     * @param activities  the list of activities of the Project
      */
     public DefaultProject(String name, String description, List<T> activities) {
         this.name = name;
         this.description = description;
         isClosed = false;
-        if(activities == null || activities.isEmpty()) {
-            this.activities = new ArrayList<>();
-        }
         this.activities = activities;
     }
 
     @Override
-    public void addActivity(T activity)
-    {
+    public void addActivity(T activity) {
         this.activities.add(activity);
     }
 
     @Override
-    public void removeActivity(T activity)
-    {
+    public void removeActivity(T activity) {
         this.activities.remove(activity);
     }
 
@@ -91,6 +93,15 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -122,7 +133,7 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
      * Closes the current Project if all activities have been marked as completed
      */
     public void close() {
-        if(this.activities.stream().allMatch(IActivity::isCompleted)){
+        if (this.activities.stream().allMatch(IActivity::isCompleted)) {
             isClosed = true;
         }
     }

@@ -22,7 +22,8 @@ public final class DateFormatter {
     private static final DateTimeFormatter USA_FORMAT = DateTimeFormatter.ofPattern("MMddyyyy");
 
     // Private constructor to prevent instantiation of utility class
-    private DateFormatter() {}
+    private DateFormatter() {
+    }
 
     /**
      * Formats a Calendar instance into the European date format (ddMMyyyy).

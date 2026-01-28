@@ -25,6 +25,7 @@ public class ActivitiesCalendar {
 
     /**
      * Constructs a `ProjectCalendar` with the specified activity and scheduled day.
+     *
      * @param activitiesScheduled The map of scheduled days to their corresponding activities.
      */
     public ActivitiesCalendar(Map<ScheduledDay, List<IActivity>> activitiesScheduled) {
@@ -38,8 +39,8 @@ public class ActivitiesCalendar {
      * @param endingDay   The ending day of the report range.
      * @return An `IReport` object containing the activities scheduled within the specified range.
      */
-    public IReport generateReport(ScheduledDay startingDay, ScheduledDay endingDay) {
-        return new DefaultReport(
+    public IReport<IActivity> generateReport(ScheduledDay startingDay, ScheduledDay endingDay) {
+        return new DefaultReport<>(
                 List.of(),
                 activitiesScheduled.entrySet().stream()
                         .filter(entry -> {

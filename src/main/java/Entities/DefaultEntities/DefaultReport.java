@@ -5,19 +5,23 @@ import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
 import Entities.Interfaces.IReport;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import org.hibernate.annotations.Table;
+import jakarta.persistence.Table;
 
 import java.util.List;
+
 /**
  * Default implementation of the IReport interface.
+ *
  * @param <T> the type of activity associated with the report
  */
 @Entity
-@Table(appliesTo = "DefaultReport")
-public class DefaultReport<T extends IActivity> implements IReport, DurationAware {
+@Table(name = "Reports")
+public class DefaultReport<T extends IActivity> implements IReport<T>, DurationAware {
     // Unique identifier for the Report
     @Id
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
     // A list of multiple Project types
     private final List<IProject<? extends IActivity>> projects;
@@ -34,7 +38,8 @@ public class DefaultReport<T extends IActivity> implements IReport, DurationAwar
 
     /**
      * The Report constructor.
-     * @param projects the list of projects of the Report
+     *
+     * @param projects   the list of projects of the Report
      * @param activities the list of activities of the Report
      */
     public DefaultReport(List<IProject<? extends IActivity>> projects, List<T> activities) {
@@ -53,6 +58,11 @@ public class DefaultReport<T extends IActivity> implements IReport, DurationAwar
     }
 
     @Override
+    public int getTotalEstimatedDurationInHours() {
+        return DurationAware.super.getTotalEstimatedDurationInHours();
+    }
+
+    @Override
     public int getTotalEstimatedDurationInMinutes() {
         return projects.stream()
                 .flatMap(project -> project.getActivities().stream())
@@ -60,4 +70,5 @@ public class DefaultReport<T extends IActivity> implements IReport, DurationAwar
                 .sum();
 
     }
+
 }

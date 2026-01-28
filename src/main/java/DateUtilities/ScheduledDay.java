@@ -17,7 +17,7 @@ import java.util.Objects;
  * If a null value is provided to the constructor or via {@link #setScheduledDay},
  * subsequent calls to the accessor methods will result in a {@link NullPointerException}.</p>
  */
-public class ScheduledDay implements Comparable<ScheduledDay>{
+public class ScheduledDay implements Comparable<ScheduledDay> {
     /**
      * The wrapped Calendar instance representing the scheduled date/time.
      * May be null if not initialized.
@@ -203,9 +203,9 @@ public class ScheduledDay implements Comparable<ScheduledDay>{
                 (this.getYear() == day.getYear() && this.getMonth() > day.getMonth())
                 || this.getYear() == day.getYear() && this.getMonth() == day.getMonth() && this.getDay() > day.getDay()) {
             return -1;
-        } else if (this.equals(day)){
+        } else if (this.equals(day)) {
             return 0;
-    }
+        }
         return 1;
     }
 }

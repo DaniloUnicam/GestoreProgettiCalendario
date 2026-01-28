@@ -1,33 +1,18 @@
 package Services;
 
+import Entities.Interfaces.IActivity;
 import Entities.Interfaces.IProject;
+import Repositories.ProjectRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
+@ApplicationScoped
+public class ProjectService extends GenericProjectService<IProject<IActivity>, IActivity> {
 
-public class ProjectService<T extends IProject> {
-    //The project being handled
-    private T project;
-
-    /**
-     * The HandlerProject constructor.
-     * @param project the project to be handled
-     */
-    public ProjectService(T project) {
-        this.project = project;
+    @Inject
+    public ProjectService(ProjectRepository projectRepository) {
+        super(projectRepository);
     }
 
-    /**
-     * Gets the project being handled.
-     * @return the project
-     */
-    public IProject getProject() {
-        return project;
-    }
 
-    /**
-     * Sets the project being handled.
-     * @param project the project to be set
-     */
-    public void setProject(T project) {
-        this.project = project;
-    }
 }
