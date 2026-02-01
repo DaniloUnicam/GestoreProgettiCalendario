@@ -2,7 +2,6 @@ plugins {
     id("java")
     id("application")
     id("org.openjfx.javafxplugin") version "0.1.0"
-    id("org.jetbrains.kotlin.jvm") version "2.0.0"
 }
 
 group = "org.example"
@@ -10,13 +9,6 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-}
-sourceSets {
-    test {
-        java {
-            srcDirs("src/test/java")
-        }
-    }
 }
 
 // Librarys configuration for JavaFX
@@ -26,8 +18,9 @@ javafx {
 }
 // Main class configuration
 application {
-    mainClass.set("MainGUI")
+    mainClass.set("it.unicam.cs.mpgc.jtime119685.Application.MainGUI")
 }
+
 // Uses Java 21
 java {
     toolchain {
@@ -39,11 +32,16 @@ dependencies {
     // --- JUnit ---
     testImplementation(platform("org.junit:junit-bom:5.5.2"))
     // Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-    testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    //testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
+    //testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    // Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:6.0.2")
+    // Source: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-gradle-plugin/
+    //testRuntimeOnly("org.junit.platform:junit-platform-gradle-plugin:1.2.0")
+    implementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
+
+    // Source: https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-engine/
+    testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:6.0.2")
     // --- Hibernate & Database ---
     implementation("org.hibernate.orm:hibernate-core:6.4.4.Final")
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
@@ -55,9 +53,13 @@ dependencies {
     // --- Testing ---
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    // --- JavaFX ---
+    implementation("org.openjfx:javafx-controls:21.0.2")
+    implementation("org.openjfx:javafx-fxml:21.0.2")
 }
 // Test configuration
-tasks.withType<Test> {
+tasks.test {
     useJUnitPlatform()
 
     testLogging {

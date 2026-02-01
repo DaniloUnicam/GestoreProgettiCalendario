@@ -9,13 +9,12 @@
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password"></property>
 
-        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
 
         <!-- Register mapped classes -->
-        <mapping class="Entities.DefaultEntities.DefaultActivity"/>
-        <mapping class="Entities.DefaultEntities.DefaultProject"/>
-        <mapping class="Entities.DefaultEntities.DefaultReport"/>
+        <mapping class="it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultActivity"/>
+        <mapping class="it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultProject"/>
+        <mapping class="it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultReport"/>
     </session-factory>
 </hibernate-configuration>
