@@ -30,7 +30,7 @@ java {
 // Dependencies configuration
 dependencies {
     // --- JUnit ---
-    testImplementation(platform("org.junit:junit-bom:5.5.2"))
+    //testImplementation(platform("org.junit:junit-bom:5.5.2"))
     // Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
     //testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
     //testImplementation("org.junit.jupiter:junit-jupiter")
@@ -49,10 +49,6 @@ dependencies {
 
     implementation("com.h2database:h2:2.2.224")
     // implementation("com.mysql:mysql-connector-j:8.3.0")
-
-    // --- Testing ---
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
 
     // --- JavaFX ---
     implementation("org.openjfx:javafx-controls:21.0.2")

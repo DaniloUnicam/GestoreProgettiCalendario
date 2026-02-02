@@ -26,7 +26,7 @@ public class DefaultProject implements IProject<IActivity> {
     @Column(name = "project_description", length = 100)
     private String description;
     //A list of multiple Activity types
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DefaultActivity.class)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DefaultActivity.class)
     private List<IActivity> activities = new ArrayList<>();
     //A project is closed when all activities are completed
     @Column(name = "project_closure_status", length = 100)
