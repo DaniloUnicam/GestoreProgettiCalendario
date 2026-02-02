@@ -16,6 +16,7 @@ javafx {
     version = "21.0.2"
     modules = listOf("javafx.controls", "javafx.fxml")
 }
+
 // Main class configuration
 application {
     mainClass.set("it.unicam.cs.mpgc.jtime119685.Application.MainGUI")
