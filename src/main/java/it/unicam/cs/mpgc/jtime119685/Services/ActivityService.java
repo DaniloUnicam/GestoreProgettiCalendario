@@ -21,7 +21,7 @@ public class ActivityService {
         return _activityRepository.findById(id);
     }
 
-    public void addActivity(DefaultProject<DefaultActivity> project, String description, int duration) {
+    public void addActivity(IProject<IActivity> project, String description, int duration) {
         DefaultActivity activity = new DefaultActivity(description, duration);
         project.addActivity(activity);
         _activityRepository.save(activity);

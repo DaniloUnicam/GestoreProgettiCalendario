@@ -4,18 +4,17 @@ import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IActivity;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IProject;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Default implementation of the IProject interface.
- *
- * @param <T> the type of activity associated with the project
  */
 @Entity
 @Table(name = "Projects")
-public class DefaultProject<T extends IActivity> implements IProject<T> {
+public class DefaultProject implements IProject<IActivity> {
     // Unique identifier for the Project
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +26,8 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
     @Column(name = "project_description", length = 100)
     private String description;
     //A list of multiple Activity types
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<T> activities;
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DefaultActivity.class)
+    private List<IActivity> activities = new ArrayList<>();
     //A project is closed when all activities are completed
     @Column(name = "project_closure_status", length = 100)
     private boolean isClosed;
@@ -49,7 +48,6 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
         this.name = name;
         this.description = description;
         isClosed = false;
-        this.activities = new ArrayList<>();
     }
 
     /**
@@ -59,7 +57,7 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
      * @param description the description of the Project
      * @param activities  the list of activities of the Project
      */
-    public DefaultProject(String name, String description, List<T> activities) {
+    public DefaultProject(String name, String description, List<IActivity> activities) {
         this.name = name;
         this.description = description;
         isClosed = false;
@@ -67,18 +65,18 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
     }
 
     @Override
-    public void addActivity(T activity) {
+    public void addActivity(IActivity activity) {
         this.activities.add(activity);
     }
 
     @Override
-    public void removeActivity(T activity) {
+    public void removeActivity(IActivity activity) {
         this.activities.remove(activity);
     }
 
     @Nonnull
     @Override
-    public T getActivity(Long id) {
+    public IActivity getActivity(Long id) {
         return this.activities.get(id.intValue());
     }
 
@@ -113,12 +111,12 @@ public class DefaultProject<T extends IActivity> implements IProject<T> {
 
     @Nonnull
     @Override
-    public List<T> getActivities() {
+    public List<IActivity> getActivities() {
         return activities;
     }
 
     @Override
-    public void setActivities(List<T> activities) {
+    public void setActivities(List<IActivity> activities) {
         this.activities = activities;
     }
 

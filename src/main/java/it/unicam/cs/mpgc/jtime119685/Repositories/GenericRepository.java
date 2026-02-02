@@ -1,7 +1,5 @@
 package it.unicam.cs.mpgc.jtime119685.Repositories;
 
-import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IActivity;
-import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IProject;
 import it.unicam.cs.mpgc.jtime119685.Persistence.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

@@ -7,9 +7,9 @@ import java.util.List;
  * Each Activity marks a milestone, leading to the completition of the ongoing Project
  * When each Activity is marked as completed, the Project is successfully marked as completed as well
  *
- * @param <T> the type of activity associated with the project
+ * @param <IActivity> the type of activity associated with the project
  */
-public interface IProject<T extends IActivity> {
+public interface IProject<IActivity> {
 
     /**
      * The name of the current Project
@@ -40,26 +40,26 @@ public interface IProject<T extends IActivity> {
      *
      * @return a list of activities of the current Project
      */
-    List<T> getActivities();
+    List<IActivity> getActivities();
 
     /**
      * Sets the list of activities for the current Project
      */
-    void setActivities(List<T> activities);
+    void setActivities(List<IActivity> activities);
 
     /**
      * Adds an activity to the current Project
      *
      * @param activity the activity to be added
      */
-    public void addActivity(T activity);
+    public void addActivity(IActivity activity);
 
     /**
      * Removes an activity from the current Project
      *
      * @param activity the activity to be removed
      */
-    public void removeActivity(T activity);
+    public void removeActivity(IActivity activity);
 
     /**
      * Gets an activity from the current Project based on its id
@@ -67,7 +67,7 @@ public interface IProject<T extends IActivity> {
      * @param id the id of the activity to be retrieved
      * @return the activity with the specified id
      */
-    public T getActivity(Long id);
+    public IActivity getActivity(Long id);
 
     /**
      * Marks as closed the current Project, based on the status of the contained activities
@@ -84,7 +84,17 @@ public interface IProject<T extends IActivity> {
      */
     void setClosed(boolean completed);
 
+    /**
+     * The id of the current Project
+     *
+     * @return the id of the current Project
+     */
     Long getId();
 
+    /**
+     * Changes the id of the current Project with another one
+     *
+     * @param id the new id of the Project
+     */
     void setId(Long id);
 }
