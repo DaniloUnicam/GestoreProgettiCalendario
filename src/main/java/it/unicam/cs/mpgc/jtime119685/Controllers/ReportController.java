@@ -22,7 +22,7 @@ public class ReportController {
                 .flatMap(p -> p.getActivities().stream())
                 .toList();
 
-        return new DefaultReport<>(projects, activities);
+        return new DefaultReport(projects, activities);
     }
 
 }

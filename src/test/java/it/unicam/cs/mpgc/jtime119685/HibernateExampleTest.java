@@ -1,18 +1,17 @@
 package it.unicam.cs.mpgc.jtime119685;
 
+import it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultActivity;
+import it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultProject;
+import it.unicam.cs.mpgc.jtime119685.Persistence.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class HibernateExampleTest {
 
-    @Test
-    void contextLoads() {
-        assert true;
-    }
-
-}
-
-
-    /*
     @BeforeAll
     static void setup() {
         // Inizializza la SessionFactory una volta prima di tutti i test
@@ -27,7 +26,7 @@ public class HibernateExampleTest {
     /**
      * Test to save and load one DefaultActivity
      */
-    /*
+
     @Test
     void saveAndLoadDefaultActivity() {
         DefaultActivity defaultActivity = new DefaultActivity("buy food", 60);
@@ -53,7 +52,7 @@ public class HibernateExampleTest {
     /**
      * Test to save and load one DefaultProject with one DefaultActivity with description and duration
      */
-    /*
+
     @Test
     void saveAndLoadDefaultProject() {
         DefaultProject p = new DefaultProject("My Default Project", "Todo tuesday");
@@ -82,4 +81,4 @@ public class HibernateExampleTest {
             Assertions.assertEquals("buy food", ((DefaultActivity) loaded.getActivities().get(0)).getDescription());
         }
     }
-    */
+}

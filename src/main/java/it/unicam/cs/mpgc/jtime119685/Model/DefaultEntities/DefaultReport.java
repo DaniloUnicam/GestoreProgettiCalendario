@@ -21,10 +21,10 @@ public class DefaultReport<T extends IActivity, S extends IProject<T>> implement
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // A list of multiple Project types
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<S> projects;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<T> activities;
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = DefaultProject.class)
+    private List<IProject<IActivity>> projects;
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = DefaultActivity.class)
+    private List<IActivity> activities;
 
     /**
      * The default constructor for DefaultReport.
@@ -40,18 +40,18 @@ public class DefaultReport<T extends IActivity, S extends IProject<T>> implement
      * @param projects   the list of projects of the Report
      * @param activities the list of activities of the Report
      */
-    public DefaultReport(List<S> projects, List<T> activities) {
+    public DefaultReport(List<IProject<IActivity>> projects, List<IActivity> activities) {
         this.projects = projects;
         this.activities = activities;
     }
 
     @Override
-    public List<S> getListOfProjects() {
+    public List<IProject<IActivity>> getListOfProjects() {
         return this.projects;
     }
 
     @Override
-    public List<T> getListOfActivities() {
+    public List<IActivity> getListOfActivities() {
         return this.activities;
     }
 

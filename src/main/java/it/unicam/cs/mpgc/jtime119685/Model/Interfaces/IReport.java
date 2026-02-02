@@ -15,14 +15,14 @@ public interface IReport<T extends IActivity, S extends IProject<T>> {
      *
      * @return the list of activities
      */
-    List<T> getListOfActivities();
+    List<IActivity> getListOfActivities();
 
     /**
      * A list of all projects included in the report.
      *
      * @return the list of projects
      */
-    List<S> getListOfProjects();
+    List<IProject<IActivity>> getListOfProjects();
 
 
 }
