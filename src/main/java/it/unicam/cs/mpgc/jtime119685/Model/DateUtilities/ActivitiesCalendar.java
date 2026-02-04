@@ -7,9 +7,7 @@ import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IReport;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The `ProjectCalendar` class represents a calendar associated with activities.

@@ -1,24 +1,41 @@
 package it.unicam.cs.mpgc.jtime119685.Controllers;
 
+import it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultActivity;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IActivity;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IProject;
-import it.unicam.cs.mpgc.jtime119685.Services.ProjectService;
+import it.unicam.cs.mpgc.jtime119685.Model.Services.ActivityService;
+import jakarta.inject.Inject;
 
 public class ActivityController {
 
-    private final ProjectService projectService;
+    private final ActivityService _activityService;
 
-    public ActivityController(ProjectService projectService) {
-        this.projectService = projectService;
+    @Inject
+    public ActivityController(ActivityService activityService) {
+        this._activityService = activityService;
     }
 
-    public void addActivity(IProject<IActivity> project,IActivity activity) {
-        project.addActivity(activity);
-        projectService.update(project);
+    public void createActivity(IProject<IActivity> project, String description, int duration) {
+        DefaultActivity activity = new DefaultActivity(description, duration);
+        project.createActivity(activity);
+        _activityService.createActivity(activity);
     }
 
-    public void completeActivity(IProject<IActivity> activity, Long id) {
-        projectService.getActivity(activity,id).setCompleted(true);
+    public IActivity findActivityById(IProject<IActivity> project, Long id) {
+        return project.getActivity(id);
+    }
+
+    public void updateActivity(IActivity activity) {
+        _activityService.updateActivity(activity);
+    }
+
+    public void deleteActivity(IProject<IActivity> project, IActivity activity) {
+        project.deleteActivity(activity);
+        _activityService.updateActivity(activity);
+    }
+
+    public void setActivityAsCompletedById(Long id) {
+        _activityService.findById(id).setCompleted(true);
     }
 }
 

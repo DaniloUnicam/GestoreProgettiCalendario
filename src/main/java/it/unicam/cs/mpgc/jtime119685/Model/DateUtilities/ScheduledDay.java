@@ -5,7 +5,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import org.hibernate.annotations.Type;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -31,6 +30,9 @@ public class ScheduledDay implements Comparable<ScheduledDay> {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "scheduled_day", nullable = false)
     private Calendar scheduledDay;
+
+    public ScheduledDay() {
+    }
 
     /**
      * Constructs a ScheduledDay that wraps the provided {@link Calendar}.

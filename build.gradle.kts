@@ -30,19 +30,15 @@ java {
 }
 // Dependencies configuration
 dependencies {
-    // --- JUnit ---
-    //testImplementation(platform("org.junit:junit-bom:5.5.2"))
-    // Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-    //testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
-    //testImplementation("org.junit.jupiter:junit-jupiter")
+    // --- JUnit 5 (Stable 5.10.2) ---
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    // Source: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-gradle-plugin/
-    //testRuntimeOnly("org.junit.platform:junit-platform-gradle-plugin:1.2.0")
     implementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
+// Source: https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-engine/
+//    testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
+//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:6.0.2")
 
-    // Source: https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-engine/
-    testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:6.0.2")
     // --- Hibernate & Database ---
     implementation("org.hibernate.orm:hibernate-core:6.4.4.Final")
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")

@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.jtime119685.Repositories;
+package it.unicam.cs.mpgc.jtime119685.Model.Repositories;
 
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IActivity;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IProject;

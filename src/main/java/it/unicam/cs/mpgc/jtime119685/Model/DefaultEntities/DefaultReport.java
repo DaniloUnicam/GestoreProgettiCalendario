@@ -4,8 +4,10 @@ import it.unicam.cs.mpgc.jtime119685.Model.DateUtilities.DurationAware;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IActivity;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IProject;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IReport;
+import it.unicam.cs.mpgc.jtime119685.Persistence.HibernatePersistence;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,24 +16,25 @@ import java.util.List;
  * @param <T> the type of activity associated with the report
  */
 @Entity
-@Table(name = "Reports")
-public class DefaultReport<T extends IActivity, S extends IProject<T>> implements IReport<T,S>, DurationAware {
-    // Unique identifier for the Report
+@Table(name = "DefaultReports")
+public class DefaultReport<T extends IActivity, S extends IProject<T>> implements IReport<T,S>, DurationAware, HibernatePersistence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "default_report_id")
     private Long id;
-    // A list of multiple Project types
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = DefaultProject.class)
+    @JoinTable(name = "default_report_list_of_projects")
     private List<IProject<IActivity>> projects;
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = DefaultActivity.class)
+    @JoinTable(name = "default_report_list_of_activities")
     private List<IActivity> activities;
 
     /**
      * The default constructor for DefaultReport.
      */
     public DefaultReport() {
-        this.projects = null;
-        this.activities = null;
+        this.projects = new ArrayList<>();
+        this.activities = new ArrayList<>();
     }
 
     /**
@@ -69,4 +72,13 @@ public class DefaultReport<T extends IActivity, S extends IProject<T>> implement
 
     }
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -52,14 +52,20 @@ public interface IProject<IActivity> {
      *
      * @param activity the activity to be added
      */
-    public void addActivity(IActivity activity);
+    public void createActivity(IActivity activity);
 
     /**
      * Removes an activity from the current Project
      *
      * @param activity the activity to be removed
      */
-    public void removeActivity(IActivity activity);
+    public void deleteActivity(IActivity activity);
+
+    /**
+     * Removes an activity from the current Project based on its id
+     * @param id
+     */
+    public void deleteActivity(Long id);
 
     /**
      * Gets an activity from the current Project based on its id
@@ -83,18 +89,4 @@ public interface IProject<IActivity> {
      * the user wants to close the current Project
      */
     void setClosed(boolean completed);
-
-    /**
-     * The id of the current Project
-     *
-     * @return the id of the current Project
-     */
-    Long getId();
-
-    /**
-     * Changes the id of the current Project with another one
-     *
-     * @param id the new id of the Project
-     */
-    void setId(Long id);
 }

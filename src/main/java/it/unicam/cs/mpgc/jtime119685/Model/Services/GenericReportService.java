@@ -1,9 +1,9 @@
-package it.unicam.cs.mpgc.jtime119685.Services;
+package it.unicam.cs.mpgc.jtime119685.Model.Services;
 
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IActivity;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IProject;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IReport;
-import it.unicam.cs.mpgc.jtime119685.Repositories.GenericRepository;
+import it.unicam.cs.mpgc.jtime119685.Model.Repositories.GenericRepository;
 
 import java.util.List;
 
@@ -14,20 +14,20 @@ public class GenericReportService<T extends IActivity, S extends IProject<T>> {
         _repo = repo;
     }
 
-    public void saveReport(IReport<T, S> report) {
+    public void createReport(IReport<T, S> report) {
         _repo.save(report);
     }
 
-    public void deleteReport(IReport<T, S> report) {
-        _repo.delete(report);
-    }
-
-    public IReport<T, S> getReportById(Long id) {
+    public IReport<T, S> findReportById(Long id) {
         return _repo.findById(id);
     }
 
     public List<IReport<T, S>> getAllActivitiesReport() {
         return _repo.findAll();
+    }
+
+    public void deleteReport(IReport<T, S> report) {
+        _repo.delete(report);
     }
 
 }

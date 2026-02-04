@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.jtime119685.Repositories;
+package it.unicam.cs.mpgc.jtime119685.Model.Repositories;
 
 import it.unicam.cs.mpgc.jtime119685.Persistence.HibernateUtil;
 import org.hibernate.Session;
@@ -44,13 +44,6 @@ public class GenericRepository<T, ID extends Serializable> implements ICrud<T, I
             Transaction tx = session.beginTransaction();
             session.merge(entity);
             tx.commit();
-        }
-    }
-
-    public void deleteById(ID id) {
-        T entity = findById(id);
-        if (entity != null) {
-            delete(entity);
         }
     }
 

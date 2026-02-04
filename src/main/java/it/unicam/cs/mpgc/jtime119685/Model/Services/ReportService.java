@@ -1,0 +1,35 @@
+package it.unicam.cs.mpgc.jtime119685.Model.Services;
+
+import it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultReport;
+import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IActivity;
+import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IProject;
+import it.unicam.cs.mpgc.jtime119685.Model.Repositories.ReportRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import java.util.List;
+
+@ApplicationScoped
+public class ReportService extends GenericReportService<IActivity, IProject<IActivity>> {
+
+    @Inject
+    public ReportService(ReportRepository report) {
+        super(report);
+    }
+
+    public <T extends IActivity,S extends IProject<T>> DefaultReport<T, S> createReport(List<S> projects) {
+        List<T> activities = projects.stream()
+                .flatMap(p -> p.getActivities().stream())
+                .toList();
+
+        return new DefaultReport(projects, activities);
+    }
+
+    public <T extends IActivity,S extends IProject<T>> DefaultReport<T, S> createReport(S project) {
+        List<S> projects = List.of(project);
+        List<T> activities = project.getActivities();
+
+        return new DefaultReport(projects, activities);
+    }
+
+}

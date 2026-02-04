@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities;
 
 import it.unicam.cs.mpgc.jtime119685.Model.DateUtilities.DurationAware;
 import it.unicam.cs.mpgc.jtime119685.Model.Interfaces.IActivity;
+import it.unicam.cs.mpgc.jtime119685.Persistence.HibernatePersistence;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
@@ -12,20 +13,17 @@ import java.util.Objects;
  * Represents an activity with a unique ID, description, estimated duration, and completion status.
  */
 @Entity
-@Table(name = "Activities")
-public class DefaultActivity implements IActivity, DurationAware {
-    // Unique identifier for the Activity
+@Table(name = "DefaultActivities")
+public class DefaultActivity implements IActivity, DurationAware, HibernatePersistence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "default_activity_id")
     private Long id;
-    // Description of the Activity
     @Column(name = "activity_description", length = 100)
     private String description;
-    // Estimated duration of the Activity in minutes
     @Column(name = "activity_estimated_duration")
     private int estimatedDuration;
-    // Completion status of the Activity
-    @Column(name = "activity_is_completed")
+    @Column(name = "activity_completition")
     private boolean isCompleted;
 
     /**
@@ -106,6 +104,5 @@ public class DefaultActivity implements IActivity, DurationAware {
     public void setCompleted(boolean completed) {
         this.isCompleted = completed;
     }
-
 
 }
