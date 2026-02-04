@@ -5,8 +5,7 @@
     <session-factory>
         <!-- change these to your DB connection -->
         <property name="hibernate.connection.driver_class">org.h2.Driver</property>
-        <property name="hibernate.connection.url">jdbc:sqlite:/DRIVE:it/unicam/cs/mpgc/jtime119685/Persistence/HibernateDB.db</property>
-        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.url">jdbc:sqlite:./HibernateDB.db</property>        <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password"></property>
 
         <property name="hibernate.hbm2ddl.auto">update</property>
