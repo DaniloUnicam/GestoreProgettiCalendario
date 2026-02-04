@@ -22,9 +22,11 @@ public class DefaultReport<T extends IActivity, S extends IProject<T>> implement
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "default_report_id")
     private Long id;
+
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = DefaultProject.class)
     @JoinTable(name = "default_report_list_of_projects")
     private List<IProject<IActivity>> projects;
+
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = DefaultActivity.class)
     @JoinTable(name = "default_report_list_of_activities")
     private List<IActivity> activities;

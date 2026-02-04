@@ -47,7 +47,7 @@ public class ProjectController {
     }
 
     /**
-     * Removes an activity from a project.
+     * Removes an activity from a project. Project is updated automatically after the activity is removed.
      *
      * @param project The project from which the activity will be removed.
      * @param activity The activity to be removed.

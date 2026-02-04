@@ -31,7 +31,13 @@ public class ActivityController {
 
     public void deleteActivity(IProject<IActivity> project, IActivity activity) {
         project.deleteActivity(activity);
-        _activityService.updateActivity(activity);
+        _activityService.deleteActivity(activity);
+    }
+
+    public void deleteActivityById(IProject<IActivity> project, Long id) {
+        IActivity activity = project.getActivity(id);
+        project.deleteActivity(activity);
+        _activityService.deleteActivity(activity);
     }
 
     public void setActivityAsCompletedById(Long id) {

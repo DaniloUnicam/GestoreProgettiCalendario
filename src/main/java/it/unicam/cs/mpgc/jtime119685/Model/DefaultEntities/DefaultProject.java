@@ -19,13 +19,17 @@ public class DefaultProject implements IProject<IActivity>, HibernatePersistence
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "default_project_id")
     private Long id;
+
     @Column(name = "default_project_name", length = 100)
     private String name;
+
     @Column(name = "default_project_description", length = 100)
     private String description;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true, targetEntity = DefaultActivity.class)
     @JoinColumn(name = "default_project_list_of_activities")
     private List<IActivity> activities = new ArrayList<>();
+
     @Column(name = "default_project_status", length = 100)
     private boolean isClosed;
 

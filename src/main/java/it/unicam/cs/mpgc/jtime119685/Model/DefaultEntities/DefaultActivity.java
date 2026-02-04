@@ -19,10 +19,13 @@ public class DefaultActivity implements IActivity, DurationAware, HibernatePersi
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "default_activity_id")
     private Long id;
+
     @Column(name = "activity_description", length = 100)
     private String description;
+
     @Column(name = "activity_estimated_duration")
     private int estimatedDuration;
+
     @Column(name = "activity_completition")
     private boolean isCompleted;
 
