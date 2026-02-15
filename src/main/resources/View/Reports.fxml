@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JTime.Controllers.ReportController">
+    <children>
+        <Pane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: Aquamarine;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button fx:id="backButton" layoutX="20" layoutY="20" mnemonicParsing="false" onAction="#onBackToProjects" style="-fx-background-color: LightGray;" text="Back" />
+                <Button fx:id="refreshButton" layoutX="100" layoutY="20" mnemonicParsing="false" onAction="#onRefresh" style="-fx-background-color: Lime;" text="Refresh" />
+                <Button fx:id="selectProjectButton" layoutX="180" layoutY="20" mnemonicParsing="false" onAction="#onSelectProject" style="-fx-background-color: Gold;" text="Select Project" />
+
+                <TableView fx:id="reportTable" layoutX="20" layoutY="60" prefHeight="480" prefWidth="860" style="-fx-background-color: Beige;">
+                    <columns>
+                        <TableColumn fx:id="actNameColumn" prefWidth="300" text="Activity Name" />
+                        <TableColumn fx:id="durationColumn" prefWidth="120" text="Duration (min)" />
+                        <TableColumn fx:id="projectNameColumn" prefWidth="300" text="Project" />
+                        <TableColumn fx:id="statusColumn" prefWidth="120" text="Status" />
+                    </columns>
+                </TableView>
+
+                <Label fx:id="totalLabel" layoutX="20" layoutY="550" prefWidth="860" text="Total time: 0 minutes" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

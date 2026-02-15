@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JTime.Controllers.ProjectController">
+   <children>
+      <Pane prefHeight="604.0" prefWidth="946.0" style="-fx-background-color: Aquamarine;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="createProjectButton" layoutX="24.0" layoutY="21.0" mnemonicParsing="false" onAction="#onCreateProject" prefHeight="12.0" prefWidth="93.0" style="-fx-background-color: Lime;" text="+ New Project" />
+            <Button fx:id="deleteProjectButton" layoutX="177.0" layoutY="21.0" mnemonicParsing="false" onAction="#onDeleteProject" style="-fx-background-color: Red;" text="Delete" />
+            <Button fx:id="openActivitiesButton" layoutX="546.0" layoutY="15.0" mnemonicParsing="false" onAction="#onOpenActivities" prefHeight="37.0" prefWidth="139.0" style="-fx-background-color: Cyan;" text="Activities">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="openReportsButton" layoutX="708.0" layoutY="15.0" mnemonicParsing="false" onAction="#onOpenReports" prefHeight="37.0" prefWidth="147.0" style="-fx-background-color: Magenta;" text="Reports">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="editProjectButton" layoutX="132.0" layoutY="21.0" mnemonicParsing="false" onAction="#onEditProject" style="-fx-background-color: Gold;" text="Edit" />
+            <Button fx:id="closeProjectButton" layoutX="241.0" layoutY="21.0" mnemonicParsing="false" onAction="#onCloseProject" style="-fx-background-color: LightGray;" text="Close" />
+            <TableView fx:id="viewProjects" layoutX="17.0" layoutY="61.0" prefHeight="500.0" prefWidth="884.0">
+              <columns>
+                <TableColumn fx:id="projectName_column" prefWidth="200.0" text="Project Name" />
+                <TableColumn fx:id="projectDescription_column" prefWidth="550.0" text="Description" />
+                  <TableColumn fx:id="projectStatus_column" prefWidth="132.800048828125" text="Status" />
+              </columns>
+            </TableView>
+         </children></Pane>
+   </children>
+</AnchorPane>

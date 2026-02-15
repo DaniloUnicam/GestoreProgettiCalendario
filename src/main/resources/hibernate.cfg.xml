@@ -13,8 +13,8 @@
         <property name="show_sql">true</property>
 
         <!-- Register mapped classes -->
-        <mapping class="it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultActivity"/>
-        <mapping class="it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultProject"/>
-        <mapping class="it.unicam.cs.mpgc.jtime119685.Model.DefaultEntities.DefaultReport"/>
+        <mapping class="JTime.Model.DefaultEntities.DefaultActivity"/>
+        <mapping class="JTime.Model.DefaultEntities.DefaultProject"/>
+        <mapping class="JTime.Model.DefaultEntities.DefaultReport"/>
     </session-factory>
 </hibernate-configuration>

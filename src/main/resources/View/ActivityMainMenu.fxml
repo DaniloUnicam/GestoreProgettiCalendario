@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JTime.Controllers.ActivityController">
+    <children>
+        <Pane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: Aquamarine;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button fx:id="backButton" layoutX="20" layoutY="20" mnemonicParsing="false" onAction="#onBackToProjects" style="-fx-background-color: LightGray;" text="Back" />
+                <Button fx:id="createActivityButton" layoutX="120" layoutY="20" mnemonicParsing="false" onAction="#onCreateActivity" style="-fx-background-color: Lime;" text="+ New Activity" />
+                <Button fx:id="editActivityButton" layoutX="232.0" layoutY="20.0" mnemonicParsing="false" onAction="#onEditActivity" style="-fx-background-color: Gold;" text="Edit" />
+                <Button fx:id="deleteActivityButton" layoutX="285.0" layoutY="20.0" mnemonicParsing="false" onAction="#onDeleteActivity" style="-fx-background-color: Red;" text="Delete" />
+                <Button fx:id="closeActivityButton" layoutX="350.0" layoutY="20.0" mnemonicParsing="false" onAction="#onCloseActivity" style="-fx-background-color: LightGray;" text="Close Activity" />
+
+                <TableView fx:id="activityTable" layoutX="20" layoutY="60" prefHeight="520" prefWidth="860" style="-fx-background-color: Beige;">
+                    <columns>
+                        <TableColumn fx:id="descColumn" prefWidth="300" text="Description" />
+                        <TableColumn fx:id="estimatedDurationColumn" prefWidth="120" text="Estimated Duration" />
+                        <TableColumn fx:id="actualDurationColumn" prefWidth="120" text="Actual Duration" />
+                        <TableColumn fx:id="projectColumn" prefWidth="220" text="Project" />
+                        <TableColumn fx:id="statusColumn" prefWidth="100" text="Status" />
+                    </columns>
+                </TableView>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
